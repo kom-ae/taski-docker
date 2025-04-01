@@ -1,5 +1,3 @@
-# FROM python:3.9
-# ENV http_proxy 192.168.12.111:3130
 FROM python:3.9-slim
 
 WORKDIR /app

@@ -24,7 +24,7 @@ services:
   backend:
     # Из какого Dockerfile собирать образ для этого контейнера:
     # container_name: backend
-    build: ./backend/
+    image: komarovae/taski_backend
     env_file: .env
     volumes:
       - static:/backend_static
@@ -33,14 +33,14 @@ services:
       - db
   # Имя третьего контейнера. Это контейнер с фронтендом
   frontend:
+    image: komarovae/taski_frontend_slim
     env_file: .env
-    build: ./frontend/
     volumes:
       - static:/frontend_static
     command: cp -r /app/build/. /frontend_static/
 
   gateway:
-    build: ./gateway/
+    image: komarovae/taski_gateway
     ports:
       - 8000:80
     volumes:
