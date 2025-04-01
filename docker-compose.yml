@@ -22,6 +22,7 @@ services:
   # Имя и описание контейнера с бэкендом
   backend:
     # Из какого Dockerfile собирать образ для этого контейнера:
+    container_name: backend
     build: ./backend/
     env_file: .env
     # Какие контейнеры нужно запустить до старта этого контейнера:
@@ -31,3 +32,10 @@ services:
   frontend:
     env_file: .env
     build: ./frontend/
+
+  gateway:
+    build: ./gateway/
+    ports:
+      - 8000:80
+    depends_on:
+      - backend
